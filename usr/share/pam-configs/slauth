@@ -1,0 +1,6 @@
+Name: Slack notification on auth
+Default: yes
+Priority: 0
+Auth-Type: Additional
+Auth:
+        optional                        pam_exec.so /usr/local/bin/auth_notificator.sh
