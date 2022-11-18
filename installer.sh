@@ -18,9 +18,7 @@ read -p "" INPUT_EMOJI
 cd `dirname $0`
 
 # set Slack Incoming Webhook URL and EMOJI
-sed -e "s:SLACK_API_URL=/SLACK_API_URL=$INPUT_URL:g" ./usr/local/bin/auth_notificator.sh > tmp
-sed -e "s/CHANNEL=/CHANNEL=$INPUT_CHANNEL/g" tmp > tmp
-sed -e "s/ICON_EMOJI=/ICON_EMOJI=$INPUT_EMOJI/g" tmp > tmp
+sed -e "s|SLACK_API_URL=|SLACK_API_URL=\"$INPUT_URL\"|g" -e "s/CHANNEL=/CHANNEL=\"$INPUT_CHANNEL\"/g" -e "s/ICON_EMOJI=/ICON_EMOJI=\"$INPUT_EMOJI\"/g" ./usr/local/bin/auth_notificator.sh > tmp
 
 mv ./tmp /usr/local/bin/auth_notificator.sh
 chown root:root /usr/local/bin/auth_notificator.sh
